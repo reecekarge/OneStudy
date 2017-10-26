@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OneStudy</title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ <link rel="shortcut icon" type="image/x-icon" href="images/books-stack-of-three.png" />
+<link rel="stylesheet" type="text/css" href="semantic/semantic.css">
+<link rel="stylesheet" type="text/css" href="semantic/components/dropdown.css">
+      <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <!-- Site Properties -->
+  <title>Login Example - Semantic</title>
+  <link rel="stylesheet" type="text/css" href="semantic/components/reset.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/site.css">
+
+  <link rel="stylesheet" type="text/css" href="semantic/components/container.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/grid.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/header.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/image.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/menu.css">
+
+  <link rel="stylesheet" type="text/css" href="semantic/components/divider.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/segment.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/form.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/input.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/button.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/list.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/message.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/icon.css">
+
+  <script src="semantic/components/form.js"></script>
+  <script src="semantic/components/transition.js"></script>
+  <!--  <link href="main.css" rel="stylesheet" />-->
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+      
+    <script src="semantic/semantic.min.js"></script>
+    <script src="semantic/components/dropdown.js"></script>
+    <!--<script src="progress-bar.js"></script>-->
+    
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#menu').dropdown();
+        $('#classes').dropdown();
+        $('#lessons').dropdown();
+    $('.ui.embed').embed();
+        ProgressBar.singleStepAnimation =500
+       /* ProgressBar.init(
+
+  [ 'Introduction to CS6460',
+    'Readiness Questions',
+    'An Experiment in Educational Technology',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12'
+  ],
+  '11',
+  'progress-bar-wrapper'
+);*/     
+    });
+    </script>
+    <!--
+        Stylesheets and Preprocessors
+        ==============================
+
+        You can always bring in CSS files manually with `<link>` tags, or asynchronously
+        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage
+        of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+        By default, stylesheets from your `assets/styles` folder are included
+        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
+        are supported. In production, your styles will be minified and concatenated into
+        a single file.
+
+        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Change the order of your CSS files
+            + Import stylesheets from other directories
+            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
+    -->
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="/styles/importer.css">
+    <!--STYLES END-->
+      <style>
+          html{height:100vh;overflow:hidden;}
+          body{height:100vh;overflow:hidden;}
+      </style>
+  </head>
+
+  <body>
+    <%- body %>
+
+
+
+    <!--
+        Client-side Templates
+        ========================
+
+        HTML templates are important prerequisites of modern, rich client applications.
+        To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
+        that you load these templates client-side.
+
+        By default, your Gruntfile is configured to automatically load and precompile
+        client-side JST templates in your `assets/templates` folder, then
+        include them here automatically (between TEMPLATES and TEMPLATES END).
+
+        To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Import templates from other directories
+            + Use a different template engine (handlebars, jade, dust, etc.)
+            + Internationalize your client-side templates using a server-side
+              stringfile before they're served.
+    -->
+
+    <!--TEMPLATES-->
+    
+    <!--TEMPLATES END-->
+
+
+    <!--
+
+      Client-side Javascript
+      ========================
+
+      You can always bring in JS files manually with `script` tags, or asynchronously
+      on the client using a solution like AMD (RequireJS).  Or, if you like, you can
+      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+      By default, files in your `assets/js` folder are included here
+      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
+      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
+      and concatenated into a single file.
+
+      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+      For example, here are a few things you could do:
+
+          + Change the order of your scripts
+          + Import scripts from other directories
+          + Use a different preprocessor, like TypeScript
+
+    -->
+
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <!--SCRIPTS END-->
+  </body>
+</html>

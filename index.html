@@ -1,0 +1,248 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="semantic/semantic.css">
+<link rel="stylesheet" type="text/css" href="semantic/components/dropdown.css">
+    <link href="main.css" rel="stylesheet" />
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+    <script src="semantic/semantic.min.js"></script>
+    <script src="semantic/components/dropdown.js"></script>
+    <script src="progress-bar.js"></script>
+    
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#menu').dropdown();
+        $('#classes').dropdown();
+        $('#lessons').dropdown();
+    $('.ui.embed').embed();
+        ProgressBar.singleStepAnimation =500
+       /* ProgressBar.init(
+
+  [ 'Introduction to CS6460',
+    'Readiness Questions',
+    'An Experiment in Educational Technology',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12'
+  ],
+  '11',
+  'progress-bar-wrapper'
+);*/     
+    });
+    </script>
+</head>
+<body>
+
+  <div class="ui fixed inverted  menu">
+    <div class="ui container">
+      <a href="#" class="header item">
+        <!--<img class="logo" src="assets/images/logo.png">-->
+        OneStudy
+      </a>
+      
+          
+        <div id="classes" class="ui item dropdown">
+            <div class="text">Course CS6460</div>
+              <i class="dropdown icon"></i>
+            <div class="menu">
+                <div class="item">Course CS6460</div>
+                <div class="item">Course CS6035</div>
+                <div class="item">Course CS6601</div>
+            </div>
+        </div>
+       
+        <div class="right menu" >
+        <a href="#" class="item">Syllabus</a>
+            <div class="ui dropdown icon item"  id="menu">
+                <i class="user circle outline icon" > Account</i>
+                <div class="menu">
+                  <div class="item"> Preferences</div>
+                  <div class="item">Settings</div>
+                  <div class="item">Profile</div>
+                  <div class="item">Edit Permissions</div>
+                  <div class="divider"></div>
+                  <div class="item">
+                    Logout
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="ui main text container">
+    <div class="ui grid">
+      <div class="four wide column">
+            this is a test
+        </div>
+      <div class="eight wide column">
+            This one should be bigger
+        </div>
+    </div>
+  </div>
+
+  <div class="ui  vertical footer segment">
+    <div class="ui aligned container">
+      <div class="ui stackable   divided grid">
+        <div class="five wide column">
+            <div class="ui segment" style="height: 100%; overflow:scroll;">
+          <div class="ui feed">
+              <div class="event">
+                <div class="label">
+                  <i class="user icon"></i>
+                </div>
+                <div class="content">
+                  <div class="summary">
+                    <a class="user">
+                      Elliot Fu
+                    </a> added you as a friend
+                    <div class="date">
+                      1 Hour Ago
+                    </div>
+                  </div>
+                  <div class="meta">
+                    <a class="like">
+                      <i class="like icon"></i> 4 Likes
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="event">
+                <div class="label">
+                  <i class="user icon"></i>
+                </div>
+                <div class="content">
+                  <div class="summary">
+                    <a>Helen Troy</a> added <a>2 new illustrations</a>
+                    <div class="date">
+                      4 days ago
+                    </div>
+                  </div>
+
+                  <div class="meta">
+                    <a class="like">
+                      <i class="like icon"></i> 1 Like
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="event">
+                <div class="label">
+                  <i class="user icon"></i>
+                </div>
+                <div class="content">
+                  <div class="summary">
+                    <a class="user">
+                      Jenny Hess
+                    </a> added you as a friend
+                    <div class="date">
+                      2 Days Ago
+                    </div>
+                  </div>
+                  <div class="meta">
+                    <a class="like">
+                      <i class="like icon"></i> 8 Likes
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="event">
+                <div class="label">
+                  <i class="user icon"></i>
+                </div>
+                <div class="content">
+                  <div class="summary">
+                    <a>Joe Henderson</a> posted on his page
+                    <div class="date">
+                      3 days ago
+                    </div>
+                  </div>
+                  <div class="extra text">
+                    Ours is a life of constant reruns. We're always circling back to where we'd we started, then starting all over again. Even if we don't run extra laps that day, we surely will come back for more of the same another day soon.
+                  </div>
+                  <div class="meta">
+                    <a class="like">
+                      <i class="like icon"></i> 5 Likes
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="event">
+                <div class="label">
+                  <i class="user icon"></i>
+                </div>
+                <div class="content">
+                  <div class="summary">
+                    <a>Justen Kitsune</a> added <a>2 new photos</a> of you
+                    <div class="date">
+                      4 days ago
+                    </div>
+                  </div>
+
+                  <div class="meta">
+                    <a class="like">
+                      <i class="like icon"></i> 41 Likes
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+        
+        <div class="eleven wide column">
+            
+            <div style="margin:0px;" class="ui secondary  menu">
+                <div class="header item" >15 Participants</div>
+                <div class="right menu" >
+                    <div id="lessons" class="ui item dropdown">
+                        <div class="text">Lesson 1</div>
+                          <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <div class="item">Lesson 1</div>
+                            <div class="item">Lesson 2</div>
+                            <div class="item">Lesson 3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui center aligned grid">
+                <div class="thirteen wide column ">
+                    <div class="ui  embed" data-url="https://www.youtube.com/embed/VK5b5ZQEI7M" ></div>
+                    
+                </div>
+             <!--   <div class="two wide column ">
+                    <div class="progress-bar-wrapper"></div>
+                </div>-->
+            </div>
+            <div class="ui center aligned grid">
+                  <div class="eight wide column ">
+                       <h4 class="ui  header">Footer Header</h4>
+          <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+       
+                </div>
+                  <div class="eight wide column ">
+                       <h4 class="ui  header">Footer Header</h4>
+          <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+       
+                </div>
+            </div>
+ 
+          </div>
+      </div>
+     
+    </div>
+  </div>
+</body>
+
+</html>
