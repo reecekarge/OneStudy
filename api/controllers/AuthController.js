@@ -8,9 +8,9 @@ var jwt = require('jsonwebtoken');
 module.exports = {
 	authenticate: function(req, res) {
         
-	    console.log('testing');
-        console.log(req.query.code);
-        console.log(req.url);
+//	    console.log('testing');
+//        console.log(req.query.code);
+//        console.log(req.url);
         
 
         var request = require("request");
@@ -23,7 +23,7 @@ module.exports = {
              client_id: 'hRFhqs_8szx8TaZq7vMFhQYrdclO1Jm1',
              client_secret: 'AjPhh7PEzyNC9I-p1pmAHtLn3tX27jL0GxfxSqZCF-5_5nNevYtKEc9lIHWfv1vO',
              code: req.query.code,
-             redirect_uri: 'http://localhost:1337/authenticate' },
+             redirect_uri: 'http://18.220.241.62:1337/authenticate' },
           json: true };
 
         request(options, function (error, response, body) {
@@ -38,7 +38,7 @@ module.exports = {
     logout: function(req, res) {
         console.log('logging out');
         req.session.authenticated=false;
-        res.redirect('https://karge.auth0.com/v2/logout?returnTo=http%3A%2F%2Flocalhost%3A1337');
+        res.redirect('https://karge.auth0.com/v2/logout?returnTo=http%3A%2F%2F18.220.241.62:1337%3A1337');
                       
     }
 };
