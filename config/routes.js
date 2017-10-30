@@ -38,7 +38,8 @@ module.exports.routes = {
   { controller: 'HomeController', action: 'loadHome' }
 ],
     '/login':'AuthController.authenticate',
-    '/logout':'AuthController.logout'
+    '/logout':'AuthController.logout',
+    '/profile':'ProfileController.save'
     
   /***************************************************************************
   *                                                                          *

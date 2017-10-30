@@ -29,7 +29,37 @@
                 <div class="menu">
                   <div class="item"> Preferences</div>
                   <div class="item">Settings</div>
-                  <div class="item">Profile</div>
+                  <div class="item" id="profileButton">Profile</div>
+                    <script>
+//                     $( "#profileButton" ).click(function() {
+//                        $('#profileModal').modal('show');
+//                    });
+                        $('#profileButton').click(function(e) {
+                            e.preventDefault();
+                            $('#profileModal') .modal({
+                                closable  : false,
+                                onDeny    : function(){
+                                  // I would like to have this function run when the user
+                                  // clicks the close icon
+                                  return false;
+                                },
+                                onApprove : function() {
+                                }
+                              }).modal('show').css('0.5rem auto !important;');
+                        });
+                        $(function() {
+                         $('#profileModal') .modal({
+                                closable  : false,
+                                onDeny    : function(){
+                                  // I would like to have this function run when the user
+                                  // clicks the close icon
+                                  return false;
+                                },
+                                onApprove : function() {
+                                }
+                              }).modal('show').css('0.5rem auto !important;');
+                        });
+                    </script>
                   <div class="divider"></div>
                   <div class="item" id="logout" >Logout
                   </div>
@@ -375,4 +405,110 @@
     
     <div class="ui embed" data-url="http://omscs6460.gatech.edu/fall-2017/" data-icon="right circle arrow">
 </div>
+</div>
+
+<div class="ui longer modal custom" id="profileModal" >
+  
+  <div class="header">
+    Profile Information
+  </div>
+  <div class="scrolling image content">
+    <div class="ui medium image">
+      <img id="profilePicture" src="images/profile/default.png">
+        <script>
+        var picNum = Math.floor(Math.random() * 50);
+        $("#profilePicture").attr("src","images/profile/"+picNum+".png");
+        </script>
+    </div>
+      
+      
+    <div class="description">
+      <form id="profileForm" class="ui form" action="http://localhost:1337/profile" method="POST" enctype="multipart/form-data">
+          <h5 class="ui dividing header">Tell us about yourself!<br/> <br/> The more you fill out the better the class can get to know you. </h5>
+    
+  <div class="field">
+    <label>Name</label>
+    <div class="two fields">
+      <div class="field">
+        <input type="text" name="firstName" placeholder="First Name">
+      </div>
+      <div class="field">
+        <input type="text" name="lastName" placeholder="Last Name">
+      </div>
+    </div>
+  </div>
+          <div class="field">
+              <label>Avatar</label>
+          <div class="ui buttons">
+              <button class="ui button" id="randomPic">Get Random</button>
+              <script>
+              $("#randomPic").click(function(e){
+                   e.preventDefault();
+                    var picNum = Math.floor(Math.random() * 50)+1;
+                  $("#profilePicture").attr("src","images/profile/"+picNum+".png");});
+              </script>
+              <div class="or"></div>
+              <button class="ui positive button" id="uploadPic">Upload</button>
+              <script>
+               $("#uploadPic").click(function(e){
+                   e.preventDefault();
+               });
+              </script>
+            </div>
+          </div>
+  <div class="field">
+    <label>Where do you live?</label>
+    <div class="field">
+        <input type="text" name="address" placeholder="Large Crater, Moon, Milky Way">
+    </div>
+  </div>
+  <div class="field">
+    <label>What other OMS courses have you taken so far?</label>
+    <div class="field">
+        <input type="text" name="classesTaken" placeholder="CS 6035, CSE 6220...">
+    </div>
+  </div>
+  <div class="field">
+    <label>What do you do when you're not in the OMS? (Career, hobbies, etc.)</label>
+    <div class="field">
+        <input type="text" name="aboutMe" placeholder="Hiking, Software Engineer...">
+    </div>
+  </div>
+          
+  <div class="field">
+    <label>Why are you taking CS6460: Educational Technology? What do you hope to get out of this course?</label>
+    <div class="field">
+        <input type="text" name="hopeToLearn" placeholder="I hope to get an A!">
+    </div>
+  </div>
+          
+  <div class="field">
+    <label>Do you have any early idea what kinds of problems or areas you want to work on for the project in this class?</label>
+    <div class="field">
+        <input type="text" name="projectIdea" placeholder="Solve world hunger.">
+    </div>
+  </div>
+  
+  <div class="field">
+    <label>Tell us something interesting about yourself </label>
+    <div class="field">
+        <input type="text" name="interesting" placeholder="I have six fingers on my left hand.">
+    </div>
+  </div>
+  
+</form>
+    </div>
+      
+  </div>
+  <div class="actions">
+    <div id="saveProfile" class="ui positive right labeled icon button">
+      Save
+      <i class="checkmark icon"></i>
+    </div>
+      <script>
+      $( "#saveProfile" ).click(function() {
+          $( "#profileForm" ).hide();
+      });
+      </script>
+  </div>
 </div>

@@ -7,7 +7,19 @@
 
 module.exports = {
 	loadHome: function(req, res) {
-        console.log(req.allParams());
+//        console.log(req.allParams());
+        
+//        
+//        Profile.find({name:'Finn'}).exec(function (err, usersNamedFinn){
+//          if (err) {
+//            return res.serverError(err);
+//          }
+//         
+//          return res.json(usersNamedFinn);
+//        });
+//        
+//    res.view({ layout: 'mylayout', myModel: modelObj });
+//        return res.view('homepage',{myModel: modelObj });
         return res.view('homepage');
     }
 };

@@ -4,7 +4,7 @@
  * @description :: Server-side logic for managing auths
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
-
+var jwt = require('jsonwebtoken');
 module.exports = {
 	authenticate: function(req, res) {
         
@@ -28,7 +28,9 @@ module.exports = {
 
         request(options, function (error, response, body) {
           if (error) throw new Error(error);
-             console.log(body);
+//             console.log(body);
+//             console.log(response.headers);
+//            jwt.verify()
             req.session.authenticated=true;
             res.redirect('/');
         });
