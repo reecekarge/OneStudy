@@ -38,7 +38,7 @@ module.exports = {
     logout: function(req, res) {
         console.log('logging out');
         req.session.authenticated=false;
-        res.redirect('https://karge.auth0.com/v2/logout?returnTo=http%3A%2F%2F18.220.241.62:1337');
+        res.redirect('https://karge.auth0.com/v2/logout?returnTo=http%3A%2F%2F18.220.241.62%3A1337');
                       
     }
 };
