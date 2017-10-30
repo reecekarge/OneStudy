@@ -4,7 +4,7 @@
  * @description :: Server-side logic for managing auths
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
-var jwt = require('jsonwebtoken');
+//var jwt = require('jsonwebtoken');
 module.exports = {
 	authenticate: function(req, res) {
         
