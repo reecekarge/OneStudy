@@ -39,8 +39,18 @@ module.exports.routes = {
 ],
     '/login':'AuthController.authenticate',
     '/logout':'AuthController.logout',
-    '/profile':'ProfileController.save'
-    
+    '/saveprofile':'ProfileController.save',
+   '/donothing':'AuthController.donothing',
+    '/class':'ClassController.loadClass',
+    '/lesson':'LessonController.loadLesson',
+    '/updateStatus':'ProfileController.updateStatus',
+    '/newThread':'ThreadController.newThread',
+    '/getThreadComments':'ThreadController.getThreadComments',
+    '/newComment':'ThreadController.newComment',
+    '/findQuestions':'ThreadController.findQuestions',
+    '/addFoundHelpful':'ThreadController.addFoundHelpful',
+    '/subscribe':'HomeController.subscribe',
+    '/message':'HomeController.message'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

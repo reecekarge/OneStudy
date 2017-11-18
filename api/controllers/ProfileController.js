@@ -6,16 +6,70 @@
  */
 
 module.exports = {
-	 save: function(req, res) {
-        console.log("profile controller");
-        console.log(req.body);
-        var jsonUser = req.body;
-        Profile.create(jsonUser).exec(function(err, todo) {
-            if(err) throw err
-            return res.ok();
+    
+    updateStatus: function(req,res){
+         console.log('start updateStatus');
+         var jsonUser = req.body;
+         sails.sockets.broadcast('main', { pic:4,name:'Reece Karge',date:new Date(),text:"This is a chat message." });
+         var email =  req.session.user;
+        Profile.find({email:email}).populate('threads').exec(function (err, userProfiles){
+          if (err) {
+            return res.serverError(err);
+          }
+            console.log(userProfiles);
+            var user = userProfiles[0];
+            user.status = req.body.status;
+             Profile.update({email:user.email},user).exec(function (err, updated){
+                  if (err) {console.log('Error updating user profile.'); return res.send(err, 500);}
+                   console.log("messaging");
+                    
+                    Profile.message(user.id, {status: user.status});
+                    console.log('end updateStatus');
+                    return res.ok();
+                });
         });
-        res.redirect('/');
-     }
+    },
+	save: function(req, res) {
+        console.log("Start ProfileController.save");
+       
+        var jsonUser = req.body;
+        var email =  req.session.user;
+        Profile.find({email:email}).populate('threads').exec(function (err, userProfiles){
+          if (err) {
+            return res.serverError(err);
+          }
+            if(userProfiles.length ==0){
+                Profile.create(jsonUser).exec(function(err, todo) {
+                    if(err) {console.log('Error create user profile.'); return res.send(err, 500);}
+                    res.redirect('/');
+                });
+            }else{
+                console.log(jsonUser);
+                var user = userProfiles[0];
+                user.firstName=jsonUser.firstName;
+                user.lastName=jsonUser.lastName;
+                
+                user.profilePic=jsonUser.profilePic;
+                user.interesting=jsonUser.interesting;
+                user.aboutMe=jsonUser.aboutMe;
+                user.classesTaken=jsonUser.classesTaken;
+                user.projectIdea=jsonUser.projectIdea;
+                user.address=jsonUser.address;
+                user.hopeToLearn=jsonUser.hopeToLearn;
+                user.firstLogin=0;
+                user.status=jsonUser.status;
+                
+                Profile.update({email:user.email},user).exec(function (err, updated){
+                  if (err) {console.log('Error updating user profile.'); return res.send(err, 500);}
+
+                    console.log("End ProfileController.save");
+                    res.redirect('/');
+                });
+            }
+
+        });
         
+      
+     }
 };
 

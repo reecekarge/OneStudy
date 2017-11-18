@@ -1,0 +1,195 @@
+<div class="ui longer modal custom" id="profileModal" >
+
+    <div class="header">
+        Profile Information
+    </div>
+    <div class="scrolling image content">
+        <div class="ui medium image">
+            <img style="background-color:#009B77;"     id="profilePicture" src="images/profile/default.png">
+
+        </div>
+        <div class="description">
+            <form id="profileForm" class="ui form" action="http://localhost:1337/saveprofile" method="POST" enctype="multipart/form-data">
+                <h5 class="ui dividing header">Tell us about yourself!<br/> <br/> The more you fill out the better the class can get to know you. </h5>
+
+                <div class="field">
+                    <label>Name</label>
+                    <div class="two fields">
+                        <div class="field">
+                            <input type="text" name="firstName" value="<%= userProfile.firstName %>" placeholder="First Name">
+                        </div>
+                        <div class="field">
+                            <input type="text" name="lastName" value="<%= userProfile.lastName %>" placeholder="Last Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Avatar</label>
+                    <div class="ui buttons">
+                        <button class="ui button" id="randomPic">Get Random</button>
+                        <input  type="hidden" id="profilePic" name="profilePic" value="<%= userProfile.profilePic %>">
+                        <script>
+
+                            var picNum = <%= userProfile.profilePic %>;
+
+                            if(picNum  == null || picNum===undefined)
+                                picNum = Math.floor(Math.random() * 50);
+                            $("#profilePic").val(picNum);
+                            $("#profilePicture").attr("src","images/profile/"+picNum+".png");
+
+                            $("#randomPic").click(function(e){
+                                e.preventDefault();
+                                var picNum = Math.floor(Math.random() * 50)+1;
+                                $("#profilePic").val(picNum);
+                                $("#profilePicture").attr("src","images/profile/"+picNum+".png");});
+                        </script>
+                        <div class="or"></div>
+                        <button class="ui positive button" id="uploadPic">Upload</button>
+                        <script>
+                            $("#uploadPic").click(function(e){
+                                e.preventDefault();
+                            });
+                        </script>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Where do you live?</label>
+                    <div class="field">
+                        <input type="text" name="address" value="<%= userProfile.address %>" placeholder="Large Crater, Moon, Milky Way">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>What other OMS courses have you taken so far?</label>
+                    <div class="field">
+                        <input type="text" value="<%= userProfile.classesTaken %>" name="classesTaken" placeholder="CS 6035, CSE 6220...">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>What do you do when you're not in the OMS? (Career, hobbies, etc.)</label>
+                    <div class="field">
+                        <input type="text" value="<%= userProfile.aboutMe %>" name="aboutMe" placeholder="Hiking, Software Engineer...">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Why are you taking CS6460: Educational Technology? What do you hope to get out of this course?</label>
+                    <div class="field">
+                        <input type="text" value="<%= userProfile.hopeToLearn %>" name="hopeToLearn" placeholder="I hope to get an A!">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Do you have any early idea what kinds of problems or areas you want to work on for the project in this class?</label>
+                    <div class="field">
+                        <input type="text" value="<%= userProfile.projectIdea %>" name="projectIdea" placeholder="Solve world hunger.">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Tell us something interesting about yourself </label>
+                    <div class="field">
+                        <input type="text" value="<%= userProfile.interesting %>" name="interesting" placeholder="I have six fingers on my left hand.">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Tell us something interesting about yourself </label>
+                    <div class="field">
+                        <input type="text" value="<%= userProfile.status %>" name="status" placeholder="Watching TV">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <div class="actions">
+        <div id="saveProfile" class="ui positive right labeled icon button">
+            Save
+            <i class="checkmark icon"></i>
+        </div>
+        
+    </div>
+</div>
+<div class="ui longer modal custom" id="newPostModal" >
+
+    <div class="header">
+        New Post
+    </div>
+    <div class="scrolling content">
+        <div class="description">
+            <form id="threadForm" class="ui small form" action="http://localhost:1337/saveprofile" method="POST" enctype="multipart/form-data">
+<!--                <h5 class="ui dividing header">Fill out the information bellow</h5>-->
+
+                <div class="field">
+                    <div class="two fields">
+                         <div class="field">
+                              <label>Type of Post</label>
+                              <select name="type" class="ui search dropdown">
+                                  <option value="Question">Question</option>
+                                  <option value="Note">Note</option>
+                              </select>
+                          </div>
+                        <div class="field">
+                              <label>Related to</label>
+                                <select name="relatedTo" class="ui search dropdown">
+                                  <option value=""></option>
+                                  <option value="Lesson 1">Lesson 1</option>
+                                  <option value="Lesson 2">Lesson 2</option>
+                                  <option value="Lesson 3">Lesson 3</option>
+                                  <option value="Lesson 4">Lesson 4</option>
+                                  <option value="Lesson 5">Lesson 5</option>
+                                  <option value="Lesson 6">Lesson 6</option>
+                                  <option value="Lesson 7">Lesson 7</option>
+                                  <option value="Lesson 8">Lesson 8</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                  <div class="required field">
+                    <label>Summary</label>
+                    <textarea name="summary" rows="1"></textarea>
+                  </div>
+                 <div class="field">
+                    <label>Additional Information</label>
+                    <textarea name="text" rows="3"></textarea>
+                  </div>
+            </form>
+        </div>
+
+    </div>
+    <div class="actions">
+        <div id="saveThread" class="ui positive right labeled icon button">
+            Post
+            <i class="checkmark icon"></i>
+        </div>
+        
+    </div>
+</div>
+<div class="ui small modal custom" id="newCommentModal" >
+
+    <div class="header">
+        New Comment
+    </div>
+    <div class="scrolling content">
+        <div class="description">
+            <form id="commentForm" class="ui small form" action="http://localhost:1337/saveprofile" method="POST" enctype="multipart/form-data">
+<!--                <h5 class="ui dividing header">Fill out the information bellow</h5>-->
+
+                
+                 <div class="field">
+                    <label>Text</label>
+                    <textarea name="text" rows="3"></textarea>
+                     <input  type="hidden" id="thread" name="thread" value="">
+                     <input  type="hidden" id="profile" name="profile" value="">
+                  </div>
+            </form>
+        </div>
+
+    </div>
+    <div class="actions">
+        <div id="saveComment" class="ui positive right labeled icon button">
+            Post
+            <i class="checkmark icon"></i>
+        </div>
+        
+    </div>
+</div>

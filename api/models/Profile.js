@@ -8,13 +8,13 @@
 module.exports = {
 
   attributes: {
-//        id: {
-//            columnName: 'id',
-//            type: 'integer',
-//            autoIncrement: true,
-//            primaryKey: true,
-//            unique: true
-//        },
+ id: {
+            columnName: 'id',
+            type: 'integer',
+            autoIncrement: true,
+            primaryKey: true,
+            unique: true
+        },
         firstName: {
             type: 'STRING'
         },
@@ -23,6 +23,9 @@ module.exports = {
         },
         profilePic: {
             type: 'STRING'
+        },
+        email:{
+            type:'STRING'  
         },
         interesting: {
             type: 'STRING'
@@ -42,7 +45,20 @@ module.exports = {
         hopeToLearn: {
             type: 'STRING'
         },
-     
+        firstLogin:{
+            type: 'integer',
+        },
+        defaultClassID:{
+            type: 'integer',
+        },
+        status:{
+            type: 'STRING',
+            
+        },
+        threads: {
+          collection: 'Thread',
+          via: 'profile'
+        }
   }
 };
 
