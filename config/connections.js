@@ -42,7 +42,7 @@ module.exports.connections = {
   ***************************************************************************/
    onestudyMysqlServer: {
      adapter: 'sails-mysql',
-     host: '172.31.30.167',
+     host: 'localhost',
      user: 'root', //optional
 //     password: 'OneStudyPassword22!', //optional
      password: 'LianaK22!', //optional
