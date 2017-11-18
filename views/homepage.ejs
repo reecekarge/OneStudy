@@ -224,8 +224,10 @@
 <script>
 threads ={};
     
+var baseURL ='http://18.220.241.62:1337';
+//var baseURL ='http://localhost:1337';
             function addFoundHelpful(threadID){
-                 var url1 = "http://localhost:1337/addFoundHelpful" // the script where you handle the form input.
+                 var url1 = baseURL+"/addFoundHelpful" // the script where you handle the form input.
 
                 
                     $.ajax({
@@ -242,7 +244,7 @@ threads ={};
     
             function setupLessonQuestions(itemName){
                 
-                var url1 = "http://localhost:1337/findQuestions" // the script where you handle the form input.
+                var url1 = baseURL+"/findQuestions" // the script where you handle the form input.
 
                 
                     $.ajax({
@@ -287,7 +289,7 @@ threads ={};
                     $('#ForumFeed').transition('fly right');
                 }
             function getThreadComments(threadID){
-                var url1 = "http://localhost:1337/getThreadComments" // the script where you handle the form input.
+                var url1 = baseURL+"/getThreadComments" // the script where you handle the form input.
 
                 
                     $.ajax({
@@ -367,7 +369,7 @@ threads ={};
 
                 $(".udpateStatus").click(function(){
 
-                    var url1 = "http://localhost:1337/updateStatus"; // the script where you handle the form input.
+                    var url1 = baseURL+"/updateStatus"; // the script where you handle the form input.
 
                     $.ajax({
                         type: "POST",
@@ -383,7 +385,7 @@ threads ={};
                 });
                 $("#SendMessage").click(function(){
 
-                    var url1 = "http://localhost:1337/message"; // the script where you handle the form input.
+                    var url1 = baseURL+"/message"; // the script where you handle the form input.
 
                     $.ajax({
                         type: "POST",
@@ -454,7 +456,7 @@ threads ={};
                     });
                     
                 $( "#saveProfile" ).click(function(e) {
-                    var url2 = "http://localhost:1337/saveprofile"; // the script where you handle the form input.
+                    var url2 = baseURL+"/saveprofile"; // the script where you handle the form input.
 
                     $.ajax({
                         type: "POST",
@@ -469,7 +471,7 @@ threads ={};
                     e.preventDefault(); // avoid to execute the actual submit of the form.
                 }); 
                  $( "#saveThread" ).click(function(e) {
-                    var url2 = "http://localhost:1337/newThread"; // the script where you handle the form input.
+                    var url2 =baseURL+ "/newThread"; // the script where you handle the form input.
                      
                     $.ajax({
                         type: "POST",
@@ -485,7 +487,7 @@ threads ={};
                     e.preventDefault(); // avoid to execute the actual submit of the form.
                 }); 
                   $( "#saveComment" ).click(function(e) {
-                    var url2 = "http://localhost:1337/newComment"; // the script where you handle the form input.
+                    var url2 = baseURL+"/newComment"; // the script where you handle the form input.
                    
                     $.ajax({
                         type: "POST",
