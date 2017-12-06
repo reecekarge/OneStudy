@@ -31,7 +31,7 @@ module.exports = {
 
             today = mm + '/' + dd + '/' + yyyy;
 
-         sails.sockets.broadcast('main', { pic:user.profilePic,name:user.firstName+' '+user.lastName,date:today,text:message });
+         sails.sockets.broadcast('main', { pic:user.profilePic,name:user.firstName+' '+user.lastName,date:new Date(),text:message,email:user.email });
 
             console.log("End HomeController.loadHome");
             return res.ok();

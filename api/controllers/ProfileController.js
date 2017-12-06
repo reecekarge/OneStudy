@@ -6,13 +6,25 @@
  */
 
 module.exports = {
-    
+    findUser: function(req,res){
+        
+        var useremail = req.body.user;
+        Profile.find({email:useremail}).exec(function (err, userProfiles){
+          if (err) {
+            return res.serverError(err);
+          }
+           
+            var user = userProfiles[0];
+            res.send(JSON.stringify(user));
+             
+        });
+    },
     updateStatus: function(req,res){
          console.log('start updateStatus');
          var jsonUser = req.body;
-         sails.sockets.broadcast('main', { pic:4,name:'Reece Karge',date:new Date(),text:"This is a chat message." });
+         
          var email =  req.session.user;
-        Profile.find({email:email}).populate('threads').exec(function (err, userProfiles){
+        Profile.find({email:email}).populate('threads').populate('comments').exec(function (err, userProfiles){
           if (err) {
             return res.serverError(err);
           }
@@ -34,7 +46,7 @@ module.exports = {
        
         var jsonUser = req.body;
         var email =  req.session.user;
-        Profile.find({email:email}).populate('threads').exec(function (err, userProfiles){
+        Profile.find({email:email}).populate('threads').populate('comments').exec(function (err, userProfiles){
           if (err) {
             return res.serverError(err);
           }
@@ -57,7 +69,6 @@ module.exports = {
                 user.address=jsonUser.address;
                 user.hopeToLearn=jsonUser.hopeToLearn;
                 user.firstLogin=0;
-                user.status=jsonUser.status;
                 
                 Profile.update({email:user.email},user).exec(function (err, updated){
                   if (err) {console.log('Error updating user profile.'); return res.send(err, 500);}

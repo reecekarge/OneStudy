@@ -25,18 +25,15 @@
             <i class="user circle outline icon" > Account</i>
             <div class="menu">
                 <div class="item"> Preferences</div>
-                <div class="item">Settings</div>
                 <div class="item" id="profileButton">Profile</div>
                 <div class="divider"></div>
-                <div class="item" id="logout" >Logout
-                </div>
+                <div class="item" id="logout" >Logout</div>
                
             </div>
         </div>
     </div>
 
 </div>
-
 
 
 <div class="ui  main text segment" style="padding-top:0px; padding-bottom:0px; margin-bottom:0px; margin-top:0px;">
@@ -48,15 +45,17 @@
                    
                         <div id="ForumFeed" class="visible ">
                             <div class="ui secondary pointing  menu" >
-                                <div class="header item">Class Discussion</div>
+                                <div class="header item" style="padding-left: 0px;">Class Discussion</div>
                                 <div class="right menu" >
 
+<!--
                                     <div class="item" ><div class="ui transparent icon input"  data-tooltip="Filter Posts">
                                         <i class="filter link icon"></i></div>
                                     </div>
                                     <div class="item"><div class="ui transparent icon input" data-tooltip="Search">
                                         <i class="search link icon"  ></i></div>
                                     </div>
+-->
                                     <div class="item"><div class="ui transparent icon input"  data-tooltip="New Post">
                                         <i class="edit link icon" id="newPostButton"></i></div>
                                     </div>
@@ -110,12 +109,18 @@
                             <div class="header item">15 Participants</div>
                         </div>
                         <div class="right menu" style="height:25px;">
+<!--
                             <div id="lessons" class="ui item dropdown">
                                 <div class="text">Lesson 1</div>
                                 <i class="dropdown icon"></i>
                                 <div class="menu" id="classLessons">
                                 </div>
-                            </div>
+-->
+                                 
+                                <select id="classLessons" class="ui item dropdown">
+                                  
+                                </select>
+<!--                            </div>-->
                         </div>
                     </div>
                     <div class="ui center aligned grid" style="margin-right:5px;margin-left:5px; background-color:black;">
@@ -133,7 +138,7 @@
 
                                     <div class="ui  item sixteen wide column" style="margin:0;padding:0px;">
                                         <div class="ui icon input" style="margin:0;padding:0px;">
-                                            <input id="message" class="prompt" type="text">
+                                            <input id="message" placeholder="Class Chat..." class="prompt" type="text">
                                             <i id="SendMessage" class="level down link icon"></i>
                                         </div>
                                     </div>
@@ -161,16 +166,19 @@
 
                         </div>
                         <div class="eight wide column">
+                             <div id="LessonQuestions" class="visible ">
                             <div class="ui secondary pointing  menu stackable" >
-                                <div class="header item">Lesson Questions</div>
+                                <div class="header item" style="padding-left: 0px;">Questions Pertaining to Lesson</div>
                                 <div class="right menu" >
-
+<!--
+                                    
                                     <div class="ui icon transparent item">
                                         <i class="search link icon"   data-content="Search"></i>
                                     </div>
                                     <div class="ui icon transparent item" >
                                         <i class="edit link icon" data-content="New Question"></i>
                                     </div>
+-->
 
 
                                 </div>
@@ -179,6 +187,30 @@
                                
                                 
                             </div>
+                             
+                            </div>     
+                            <div id="LessonQuestionComments" class="hidden ">
+                            <div class="ui secondary pointing  menu" >
+                                <div class="header item" style="padding-left: 0px;">Question Comments</div>
+                                <div class="right menu" >
+                                    
+                                     <a class="item" id="lessonQuestionBackButton">
+                                    Back <i class="chevron circle right icon"> </i>
+                                  </a>
+<!--
+                                     <div class="item"><div class="ui transparent icon input"  data-tooltip="New Post">
+                                        <i class="edit link icon" id="newCommentButton"></i></div>
+                                    </div>
+-->
+                                </div>
+                            </div>
+                             <div class="ui "   style="height:85vh; overflow:scroll; padding-top:0px; padding-bottom:0px; margin-bottom:0px; margin-top:0px;">
+
+                                <div id="QuestionComment" class="ui feed"    style=" padding-top:0px; padding-bottom:0px; margin-bottom:0px; margin-top:0px;">
+
+
+                                 </div></div>
+                        </div>
 
                         </div>
                     </div>
@@ -194,38 +226,18 @@
     <div class="ui scrolling embed" data-url="http://omscs6460.gatech.edu/fall-2017/" data-icon="right circle arrow">
     </div>
 </div>
-<div id="profileCard" class="ui custom popup top left transition hidden" style="top: auto; left: 1px; bottom: 69px; right: auto; width: 735.714px;">
 
-<div class="card">
-    <div class="image">
-      <img src="images/profile/37.png">
-    </div>
-    <div class="content">
-      <div class="header">Matt Giampietro</div>
-      <div class="meta">
-        <a>Friends</a>
-      </div>
-      <div class="description">
-        Matthew is an interior designer living in New York.
-      </div>
-    </div>
-    <div class="extra content">
-      <span class="right floated">
-        Joined in 2013
-      </span>
-      <span>
-        <i class="user icon"></i>
-        75 Friends
-      </span>
-    </div>
-  </div>
-</div>  
+<div id="pop1" class="popbox">
+</div>
 
 <script>
 threads ={};
     
-var baseURL ='http://18.220.241.62:1337';
-//var baseURL ='http://localhost:1337';
+                var moveLeft = 0;
+                var moveDown = 0;
+lessons = {};
+//var baseURL ='http://18.220.241.62:1337';
+var baseURL ='http://localhost:1337';
             function addFoundHelpful(threadID){
                  var url1 = baseURL+"/addFoundHelpful" // the script where you handle the form input.
 
@@ -270,9 +282,111 @@ var baseURL ='http://18.220.241.62:1337';
                     });
               
             }
-            function addQuestion( question){
-                 $("#LessonQuestionFeed").prepend(' <div class="event"><div class="content"><div class="summary meta" style="padding:0px;margin:0px; width:100%">'+question.summary+'<br/></div><div class=" meta"><span class=""><i class="comments icon"></i>'+question.comments.length+' Comments</span><span class=""><i class="star icon"></i> '+question.foundHelpful+' found this helpful</span></div></div></div><div class="ui inverted divider" style="padding:0px;margin:0px;"></div>');
+            function setUserForHoverProfile(id,target){
+                var url1 = baseURL+"/findUser" // the script where you handle the form input.
+                   
+                
+                    $.ajax({
+                        type: "POST",
+                        url: url1,
+                        data: 'user='+id, // serializes the form's elements.
+                        success: function(data)
+                        {
+                            var profile = JSON.parse(data);
+                          
+                            $("#pop1").html('<div class="ui card"><div class=" image"><img style="background-color:#009B77;" src="images/profile/'+profile.profilePic+'.png"></div><div class="content"><a class="header">'+profile.firstName+' '+profile.lastName+'</a><div class="meta"><span class="date">'+profile.aboutMe+' - </span><span class="date">'+profile.address+'</span></div> <div class="description">'+profile.interesting+'  </div></div><div class="extra content"><b>Technologies:</b><br/>'+profile.hopeToLearn+'</div></div>');
+                            
+                            moveDown = ($(target).outerHeight() / 2);
+                            $(target).show();
+                           
+                            
+                        }
+                    });
             }
+            function setupProfileHoverPopup(){
+                  $('.lessonVideos').click(function(e){
+                      e.stopPropagation();
+                    var type =$(this).attr('data-status').split(',')[0];
+                    var name =$(this).attr('data-status').split(',')[1];
+//                    var name = this.id.split(',')[0];
+                   
+                    setupLessonQuestions(name);
+//                    var id = this.id.split(',')[1];
+                    var id = lessons[name];
+                   
+                      $("#classLessons").val(name);
+                    $('#videoPlayerContainer').html('<div id="videoPlayer" class="ui embed"></div>')
+                    $('#videoPlayer').embed({
+                        source      : 'youtube',
+                        id          : id
+                    });
+                      
+                });
+                $('.popper').hover(function (e) {
+                  
+                    var target = '#' + ($(this).attr('data-popbox').split(",")[0]);
+                    setUserForHoverProfile(($(this).attr('data-popbox').split(",")[1]),target);
+                   
+                    moveLeft = $(this).outerWidth();
+                }, function () {
+                    var target = '#' + ($(this).attr('data-popbox').split(",")[0]);
+                    if (!($("a.popper").hasClass("show"))) {
+                        $(target).hide();
+                    }
+                });
+
+                $('.popper').mousemove(function (e) {
+                    var target = '#' + ($(this).attr('data-popbox').split(",")[0]);
+
+                    leftD = e.pageX + parseInt(moveLeft);
+                    maxRight = leftD + $(target).outerWidth();
+                    windowLeft = $(window).width() - 40;
+                    windowRight = 0;
+                    maxLeft = e.pageX - (parseInt(moveLeft) + $(target).outerWidth() + 20);
+
+                    if (maxRight > windowLeft && maxLeft > windowRight) {
+                        leftD = maxLeft;
+                    }
+
+                    topD = e.pageY - parseInt(moveDown);
+                    maxBottom = parseInt(e.pageY + parseInt(moveDown) + 20);
+                    windowBottom = parseInt(parseInt($(document).scrollTop()) + parseInt($(window).height()));
+                    maxTop = topD;
+                    windowTop = parseInt($(document).scrollTop());
+                    if (maxBottom > windowBottom) {
+                        topD = windowBottom - $(target).outerHeight() - 20;
+                    } else if (maxTop < windowTop) {
+                        topD = windowTop + 20;
+                    }
+
+                    $(target).css('top', topD).css('left', leftD);
+                });
+//                $('.popper').click(function (e) {
+//                    var target = '#' + ($(this).attr('data-popbox').split(",")[0]);
+//                    if (!($(this).hasClass("show"))) {
+//                        $(target).show();
+//                    }
+//                    $(this).toggleClass("show");
+//                });
+            }
+            function addQuestion( question){
+                
+                 var threadName = "thread"+question.id;
+                 $("#LessonQuestionFeed").prepend(' <div class="event" onclick="setupQuestionComments(\''+threadName+'\')"><div class="content"><div class="summary meta" style="padding:0px;margin:0px; width:100%">'+question.summary+'<br/></div><div class=" meta"><span class=""><i class="comments icon"></i>'+question.comments.length+' Comments</span><span class=""><i class="star icon"></i> '+question.foundHelpful+' found this helpful</span></div></div></div><div class="ui inverted divider" style="padding:0px;margin:0px;"></div>');
+            }
+            function setupQuestionComments(threadID){
+                        var thread = threads[threadID];
+                        var userProfile = thread.profile;
+                        var id= threadID.slice(6);
+                        $("#thread").val(id);
+                       $("#profile").val(userProfile.id);
+                        getQuestionComments(id)
+                        $("#QuestionComment").html(
+                                    '<div id="thread'+thread.id+'" class="event clickEvent" style="border-bottom:1px black;"><div class="content" style=""><div class="text">'+thread.summary+'</div></div></div><div class="ui inverted divider" style="padding:0px;margin:0px;"></div> '
+                                );
+                         toggleLessonQuestion();
+                      
+                    }
             function setupThreadComments(threadID){
                 var thread = threads[threadID];
                 var userProfile = thread.profile;
@@ -281,14 +395,51 @@ var baseURL ='http://18.220.241.62:1337';
                $("#profile").val(userProfile.id);
                 getThreadComments(id)
                 $("#ThreadComment").html(
-                            '<div id="thread'+thread.id+'" class="event clickEvent" style="border-bottom:1px black;"><div class="label"><img style="background-color:#009B77;" class="ui showProfile avatar image" src="images/profile/'+userProfile.profilePic+'.png"></div><div class="content" style=""><div class="date">'+thread.datePosted+'</div><div class="summary" style="padding-bottom:3px;"><a class="showProfile">'+userProfile.firstName+' '+userProfile.lastName+'</a> <div class="meta" ><a id="StudentStatus" class="comment date StudentStatus'+userProfile.id+'"><i style="height:10px; width:10px; border-radius: 50%; background-color:green;" class="icon"></i>'+userProfile.status+'</a></div></div><div class="text">'+thread.summary+'</div><div class="meta"><span class=""><i class="comments icon"></i> '+thread.comments.length+' Comments</span><span class=""><i class="star icon"></i> '+thread.foundHelpful+' found this helpful</span></div></div></div><div class="ui inverted divider" style="padding:0px;margin:0px;"></div> '
+                            '<div id="thread'+thread.id+'" class="event clickEvent" style="border-bottom:1px black;"><div class="label"><img  data-popbox="pop1,'+userProfile.email+'"  style="background-color:#009B77;" class="ui showProfile avatar image popper" src="images/profile/'+userProfile.profilePic+'.png"></div><div class="content" style=""><div class="date">'+thread.datePosted+'</div><div class="summary" style="padding-bottom:3px;"><a class="popper" data-popbox="pop1,'+userProfile.email+'" >' +userProfile.firstName+' '+userProfile.lastName+'</a> <div class="meta" ><a id="StudentStatus" data-status="V,Lesson '+userProfile.status[userProfile.status.length -1]+'" class="lessonVideos comment date StudentStatus'+userProfile.id+'"><i style="height:10px; width:10px; border-radius: 50%; background-color:green;" class="icon"></i>'+userProfile.status+'</a></div></div><div class="text">'+thread.summary+'</div><div class="meta"><span class=""><i class="comments icon"></i> '+thread.comments.length+' Comments</span><span class=""><i class="star icon"></i> '+thread.foundHelpful+' found this helpful</span></div></div></div><div class="ui inverted divider" style="padding:0px;margin:0px;"></div> '
                         );
+                setupProfileHoverPopup();
                 toggleForum();
+                
             }
                 function toggleForum(){
                     $('#ForumFeed').transition('fly right');
                 }
-            function getThreadComments(threadID){
+            function toggleLessonQuestion(){
+                    $('#LessonQuestions').transition('fly left');
+                }
+            function getQuestionComments(threadID){
+                var url1 = baseURL+"/getThreadComments" // the script where you handle the form input.
+
+                
+                    $.ajax({
+                        type: "POST",
+                        url: url1,
+                        data: 'threadID='+threadID, // serializes the form's elements.
+                        success: function(data)
+                        {
+                            var comments = JSON.parse(data);
+                            
+                            if( $.isArray(comments)){
+                                
+                                for(var i=1; i<=comments.length;i++){
+                                    var comment = comments[i-1];
+    //                                threads["thread"+thread.id]=thread;
+                                    
+                                    addQuestionComment(comment);
+                                }
+                            }
+                            
+                        }
+                    });
+            }
+            function addQuestionComment(comment){
+                
+                var userProfile = comment.profile;
+                 $("#QuestionComment").append(
+                '<div class="event"><div class="label" style="width:30px;">  <img  data-popbox="pop1,'+userProfile.email+'"  style="background-color:#009B77;" class="ui showProfile avatar image popper" src="images/profile/'+userProfile.profilePic+'.png"></div> <div class="content" style="padding:0px; padding-left:8px; margin:0px;"> <div class="summary"><a class="popper" data-popbox="pop1,'+userProfile.email+'" >' +userProfile.firstName+' '+userProfile.lastName+'</a><br/> <span style="margin:0px;padding:0px;" class="meta">'+comment.text+' </span> </div></div></div>');
+                setupProfileHoverPopup();
+            }
+             function getThreadComments(threadID){
                 var url1 = baseURL+"/getThreadComments" // the script where you handle the form input.
 
                 
@@ -315,12 +466,24 @@ var baseURL ='http://18.220.241.62:1337';
             }
             function addComment(comment){
                 
-                var profile = comment.profile;
+                var userProfile = comment.profile;
                  $("#ThreadComment").append(
-                '<div class="event"><div class="label" style="width:30px;">  <img style="background-color:#009B77;" width="20px" style="width:20px; height:20px;" class="ui avatar image" src="images/profile/'+profile.profilePic+'.png"></div> <div class="content" style="padding:0px; padding-left:8px; margin:0px;"> <div class="summary"><a style="margin:0px;padding:0px;" class="label showProfile">'+profile.firstName+' '+profile.lastName+'</a><div class="date"> '+comment.datePosted+' </div><br/> <span style="margin:0px;padding:0px;" class="meta">'+comment.text+' </span> </div></div></div>');
+                '<div class="event"><div class="label" style="width:30px;">  <img  data-popbox="pop1,'+userProfile.email+'"  style="background-color:#009B77;" class="ui showProfile avatar image popper" src="images/profile/'+userProfile.profilePic+'.png"></div> <div class="content" style="padding:0px; padding-left:8px; margin:0px;"> <div class="summary"><a class="popper" data-popbox="pop1,'+userProfile.email+'" >' +userProfile.firstName+' '+userProfile.lastName+'</a><div class="date"> '+comment.datePosted+' </div><br/> <span style="margin:0px;padding:0px;" class="meta">'+comment.text+' </span> </div></div></div>');
+                setupProfileHoverPopup();
             }
-
-
+            function popupProfile(){
+                     var target = '#pop1';
+                    $(target).show();
+                    moveLeft = $(this).outerWidth();
+                    moveDown = ($(this).outerHeight() / 2);
+                }
+    
+    
+    
+    
+    
+    
+    
             $(function() {
                            
                  
@@ -328,7 +491,9 @@ var baseURL ='http://18.220.241.62:1337';
                     
                 });
                 io.socket.on('message', function (data){
-                    $("#chatFeed").prepend('<div class="event"><div class="label" style="width:30px;"><img style="background-color:#009B77;" width="20px" style="width:20px; height:20px;" class="ui avatar image" src="images/profile/'+data.pic+'.png"></div><div class="content" style="padding:0px; padding-left:8px; margin:0px;"><div class="summary"><a style="margin:0px;padding:0px;" class="label showProfile">'+data.name+'</a><div class="date">'+data.posted+'</div><br/><span style="margin:0px;padding:0px;" class="meta">'+data.text+' </span></div></div></div>');
+                    var date =jQuery.format.prettyDate(data.date);
+                    $("#chatFeed").prepend('<div class="event"><div class="label" style="width:30px;"><img data-popbox="pop1,'+data.email+'"  style="background-color:#009B77;" width="20px" style="width:20px; height:20px;" class="ui avatar popper image" src="images/profile/'+data.pic+'.png"></div><div class="content" style="padding:0px; padding-left:8px; margin:0px;"><div class="summary"><a data-popbox="pop1,'+data.email+'"  style="margin:0px;padding:0px;" class="label showProfile popper">'+data.name+'</a><div class="date">'+date+'</div><br/><span style="margin:0px;padding:0px;" class="meta">'+data.text+' </span></div></div></div>');
+                     setupProfileHoverPopup();
                   
                 });
                 var vidsNum=12;
@@ -336,7 +501,10 @@ var baseURL ='http://18.220.241.62:1337';
                 var vids = lesson1Vids.split(',');
                 for(var i = 1; i <= vids.length; i++) {
                     var l = i-1;
-                    $('#classLessons').append('<div id="Lesson '+i+','+vids[l]+'" class="item lessonVideos udpateStatus" >Lesson'+i+'</div>');
+                    lessons["Lesson "+i] = vids[l];
+                    
+                    $('#classLessons').append('<option class="item lessonVideos udpateStatus" data-status="V,Lesson '+i+'" value="Lesson '+i+'">Lesson '+i+'</option>');
+//                    $('#classLessons').append('<div data-status="V,Lesson '+i+'" id="Lesson '+i+','+vids[l]+'" class="item lessonVideos udpateStatus" >Lesson'+i+'</div>');
                 }
                 setupLessonQuestions('Lesson 1');
                 $('#videoPlayerContainer').html('<div id="videoPlayer" class="ui embed"></div>')
@@ -345,7 +513,9 @@ var baseURL ='http://18.220.241.62:1337';
                     id          : vids[0]
                 });
                 $('.lessonVideos').click(function(){
-                    var name = this.id.split(',')[0];
+                    var type =$(this).attr('data-status').split(',')[0];
+                    var name =$(this).attr('data-status').split(',')[1];
+//                    var name = this.id.split(',')[0];
                     
                     setupLessonQuestions(name);
                     var id = this.id.split(',')[1];
@@ -544,7 +714,9 @@ var baseURL ='http://18.220.241.62:1337';
                 });
               
                 io.socket.on('thread', function (event){
-                  addThread(event.data);
+                    var thread =event.data
+                   threads["thread"+thread.id]=thread;
+                  addThread(thread);
                 });
                  io.socket.get('/comment', function serverResponded (body, sailsResponseObject) {
                      console.log(body);
@@ -553,18 +725,24 @@ var baseURL ='http://18.220.241.62:1337';
                     
                   addComment(event.data);
                 });
-            
+               
                 function addThread(thread){
                      var userProfile = thread.profile;
                     var threadName = "thread"+thread.id;
+                    var date =jQuery.format.prettyDate(thread.datePosted);
                         $("#forumFeed").prepend(
-                            '<div id="thread'+thread.id+'" onclick="setupThreadComments(\''+threadName+'\')" class="event clickEvent" style="border-bottom:1px black;"><div class="label"><img style="background-color:#009B77;" class="ui showProfile avatar image" src="images/profile/'+userProfile.profilePic+'.png"></div><div class="content" style=""><div class="date">'+thread.datePosted+'</div><div class="summary" style="padding-bottom:3px;"><a class="showProfile">'+userProfile.firstName+' '+userProfile.lastName+'</a> <div class="meta" ><a id="StudentStatus" class="comment date StudentStatus'+userProfile.id+'"><i style="height:10px; width:10px; border-radius: 50%; background-color:green;" class="icon"></i>'+userProfile.status+'</a></div></div><div class="text">'+thread.summary+'</div><div class="meta"><span class=""><i class="comments icon"></i> '+thread.comments.length+' Comments</span><span class="" onclick="addFoundHelpful('+thread.id+');event.stopPropagation();"><i class="star icon"></i> '+thread.foundHelpful+' found this helpful</span></div></div></div><div class="ui inverted divider" style="padding:0px;margin:0px;"></div> '
+                            '<div id="thread'+thread.id+'" onclick="setupThreadComments(\''+threadName+'\')" class="event clickEvent" style="border-bottom:1px black;"><div class="label"><img  data-popbox="pop1,'+userProfile.email+'"  style="background-color:#009B77;" class="ui showProfile avatar image popper" src="images/profile/'+userProfile.profilePic+'.png"></div><div class="content" style=""><div class="date">'+date+'</div><div class="summary" style="padding-bottom:3px;"><a class="popper" data-popbox="pop1,'+userProfile.email+'" >' +userProfile.firstName+' '+userProfile.lastName+'</a> <div class="meta" ><a id="StudentStatus" data-status="V,Lesson '+userProfile.status[userProfile.status.length -1]+'" class="lessonVideos comment date StudentStatus'+userProfile.id+'"><i style="height:10px; width:10px; border-radius: 50%; background-color:green;" class="icon"></i>'+userProfile.status+'</a></div></div><div class="text">'+thread.summary+'</div><div class="meta"><span class=""><i class="comments icon"></i> '+thread.comments.length+' Comments</span><span class="" onclick="addFoundHelpful('+thread.id+');event.stopPropagation();"><i class="star icon"></i> '+thread.foundHelpful+' found this helpful</span></div></div></div><div class="ui inverted divider" style="padding:0px;margin:0px;"></div> '
                         );
+                    setupProfileHoverPopup();
               
                 }
                 $('#furombackbutton').click(function(e){
                     toggleForum();
                 });
+                $('#lessonQuestionBackButton').click(function(e){
+                    toggleLessonQuestion();
+                });
+                
                 
             });
     

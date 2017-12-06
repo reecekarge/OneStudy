@@ -10,7 +10,7 @@ module.exports = {
         console.log('Start addFoundHelpful');
         var threadID = req.body.threadID;
         console.log(req.body);
-        Thread.find({id:threadID}).populate('comments').exec(function(err,threads){
+        Thread.find({id:threadID}).populate('comments').populate('profile').exec(function(err,threads){
              if (err) {
             return res.serverError(err);
           }
@@ -28,7 +28,7 @@ module.exports = {
         console.log('Start newThread');
         var item = req.body.item;
         console.log(req.body);
-        Thread.find({relatedTo:item}).populate('comments').exec(function(err,threads){
+        Thread.find({relatedTo:item}).populate('comments').populate('profile').exec(function(err,threads){
             if (err) {
             return res.serverError(err);
           }
@@ -40,7 +40,7 @@ module.exports = {
         var thread = req.body;
         console.log(thread);
         var email =  req.session.user;
-        Profile.find({email:email}).populate('threads').exec(function (err, userProfiles){
+        Profile.find({email:email}).populate('threads').populate('comments').exec(function (err, userProfiles){
           if (err) {
             return res.serverError(err);
           }
@@ -68,7 +68,7 @@ module.exports = {
         var comment = req.body;
         var email =  req.session.user;
         console.log(comment);
-        Profile.find({email:email}).exec(function (err, userProfiles){
+        Profile.find({email:email}).populate('threads').populate('comments').exec(function (err, userProfiles){
           if (err) {
             return res.serverError(err);
           }

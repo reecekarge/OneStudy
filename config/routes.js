@@ -50,7 +50,8 @@ module.exports.routes = {
     '/findQuestions':'ThreadController.findQuestions',
     '/addFoundHelpful':'ThreadController.addFoundHelpful',
     '/subscribe':'HomeController.subscribe',
-    '/message':'HomeController.message'
+    '/message':'HomeController.message',
+    '/findUser':'ProfileController.findUser'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

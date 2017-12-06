@@ -55,6 +55,10 @@ module.exports = {
             type: 'STRING',
             
         },
+        comments: {
+          collection: 'Comment',
+          via: 'profile'
+        },
         threads: {
           collection: 'Thread',
           via: 'profile'

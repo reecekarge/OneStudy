@@ -12,13 +12,13 @@
             <form id="profileForm" class="ui form" action="http://localhost:1337/saveprofile" method="POST" enctype="multipart/form-data">
                 <h5 class="ui dividing header">Tell us about yourself!<br/> <br/> The more you fill out the better the class can get to know you. </h5>
 
-                <div class="field">
+                <div class="required field">
                     <label>Name</label>
                     <div class="two fields">
-                        <div class="field">
+                        <div class="required field">
                             <input type="text" name="firstName" value="<%= userProfile.firstName %>" placeholder="First Name">
                         </div>
-                        <div class="field">
+                        <div class="required field">
                             <input type="text" name="lastName" value="<%= userProfile.lastName %>" placeholder="Last Name">
                         </div>
                     </div>
@@ -52,10 +52,10 @@
                         </script>
                     </div>
                 </div>
-                <div class="field">
+                <div class="required field">
                     <label>Where do you live?</label>
-                    <div class="field">
-                        <input type="text" name="address" value="<%= userProfile.address %>" placeholder="Large Crater, Moon, Milky Way">
+                    <div class="required field">
+                        <input type="text" name="address" value="<%= userProfile.address %>" placeholder="Province, Country">
                     </div>
                 </div>
                 <div class="field">
@@ -64,17 +64,17 @@
                         <input type="text" value="<%= userProfile.classesTaken %>" name="classesTaken" placeholder="CS 6035, CSE 6220...">
                     </div>
                 </div>
-                <div class="field">
-                    <label>What do you do when you're not in the OMS? (Career, hobbies, etc.)</label>
-                    <div class="field">
-                        <input type="text" value="<%= userProfile.aboutMe %>" name="aboutMe" placeholder="Hiking, Software Engineer...">
+                <div class="required field">
+                    <label>What do you do when you're not in the OMS? (Career)</label>
+                    <div class="required field">
+                        <input type="text" value="<%= userProfile.aboutMe %>" name="aboutMe" placeholder="Software Engineer, Math teacher...">
                     </div>
                 </div>
 
-                <div class="field">
-                    <label>Why are you taking CS6460: Educational Technology? What do you hope to get out of this course?</label>
-                    <div class="field">
-                        <input type="text" value="<%= userProfile.hopeToLearn %>" name="hopeToLearn" placeholder="I hope to get an A!">
+                <div class="required field">
+                    <label>What technologies or programming languages are you experienced with?</label>
+                    <div class="required field">
+                        <input type="text" value="<%= userProfile.hopeToLearn %>" name="hopeToLearn" placeholder="Ant, Java, and Oracle Software Suite">
                     </div>
                 </div>
 
@@ -85,18 +85,13 @@
                     </div>
                 </div>
 
-                <div class="field">
-                    <label>Tell us something interesting about yourself </label>
-                    <div class="field">
+                <div class="required field">
+                    <label>Tell us about yourself </label>
+                    <div class="required field">
                         <input type="text" value="<%= userProfile.interesting %>" name="interesting" placeholder="I have six fingers on my left hand.">
                     </div>
                 </div>
-                <div class="field">
-                    <label>Tell us something interesting about yourself </label>
-                    <div class="field">
-                        <input type="text" value="<%= userProfile.status %>" name="status" placeholder="Watching TV">
-                    </div>
-                </div>
+               
             </form>
         </div>
 
